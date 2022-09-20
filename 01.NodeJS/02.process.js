@@ -12,7 +12,6 @@ process.exit(0); // 이 이후의 코드들은 실행 불가 // 정상종료, �
 console.log('프로세스');        // unreachable
 
 // Hoisting (선언한 함수와 변수들은 프로그램 실행할 때 맨위로 올라감 / 위치는 여기여도 함수와 변수의 실행은 제일 꼭대기로 올라감)
-// 어느 위치에 있어도 
 function aa() {
     let a = 2;
     return a;
