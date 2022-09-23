@@ -26,7 +26,7 @@ SELECT 필드명 FROM 테이블명
     ORDER BY 필드명 순서
     LIMIT 숫자 OFFSET 숫자    -> ex) 몇 개 건너뛰고 부터 가지고와라 
  */
- 
+
  /* 작성할 때 위 조건대로 작성해야 함 / 키워드를 외워라 */
  /* SELECT * FROM city WHERE countrycode='KOR'; / 기본구조이니까 이것도 외우기 */
 
