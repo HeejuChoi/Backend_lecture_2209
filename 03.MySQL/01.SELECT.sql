@@ -2,6 +2,7 @@
  */
 
 USE world;      /* 대문자로 된 부분은 키워드라 소문자로 써도 변경됨 # world 같은 소문자로된건 table명 DB명 등  */
+                /* 내가 이 데이터베이스를 쓰겠다고 하는 것 */
 SHOW TABLES;
 DESC city;      /*  comment */
 
@@ -12,18 +13,22 @@ SQL에서 주석은 #
 실행은 F9
 * 은 전부를 의미
 데이터는 대소문자 구분을 함 
+입력 때 일부 입력하고 ctrl + space 입력하면 추천단어 나옴 
  */
 
 /* 
-SELECT 필드명 FROM 테이블명
+SELECT 필드명 FROM 테이블명    
+    JOIN 테이블명 
+	ON 조인 조건;
     WHERE 조건
+	GROUP BY 필드명
+    HAVING 그룹 조건
     ORDER BY 필드명 순서
     LIMIT 숫자 OFFSET 숫자    -> ex) 몇 개 건너뛰고 부터 가지고와라 
-    GROUP BY 필드명
-    HAVING 그룹 조건
-    JOIN 테이블명 
-    ON 조인 조건;
  */
+ 
+ /* 작성할 때 위 조건대로 작성해야 함 / 키워드를 외워라 */
+ /* SELECT * FROM city WHERE countrycode='KOR'; / 기본구조이니까 이것도 외우기 */
 
 SELECT * FROM city;                              /*  *는 모든 것 / city는 table명 / SELECT는 자주나오니 알아둘 것  */
 SELECT * FROM city WHERE countrycode='KOR';      /* 필드명에 대소문자 구별은 안함 */ 
@@ -118,3 +123,34 @@ SELECT country.name, city.Name, city.Population FROM city
 	ORDER BY city.population DESC
 	LIMIT 10;
 
+
+/* 3번 문제 * /
+/* 대륙별로 국가 숫자, GNP의 합, 평균 국가별 GNP는? */
+SELECT continent, round(SUM(gnp),-3), round(AVG(gnp),-3) FROM country /* round 로 소수점 아래 제거, -면 소수점 기준으로 큰단위쪽으로 올라감 */
+	GROUP BY continent; /* 그룹별이라 group by */
+SELECT continent, round(SUM(gnp),-3) AS gnpSum, round(AVG(gnp),-3) AS gnpAvg FROM country /* 테이블명 지정 */
+	GROUP BY continent; 
+
+/* 4번 문제 */
+/* 아시아 대륙에서 인구가 가장 많은 도시 10개를 내림차순으로 보여줄 것 (대륙명, 국가명, 도시명, 인구수)*/
+/* JOIN을 사용해야됨 */
+SELECT country.Continent, country.Name, city.Name, city.Population FROM city
+	JOIN country ON city.CountryCode=country.Code
+	WHERE country.Continent='Asia'
+	ORDER BY city.Population desc
+	LIMIT 10;
+
+/* 5번 문제 */
+/* 전 세계에서 인구가 가장 많은 10개 도시에서 사용하는 공식언어는? (도시명, 인구수, 언어명) */
+SELECT c.Name, c.Population, l.`Language` FROM city AS c 
+	JOIN countrylanguage AS l ON c.CountryCode=l.CountryCode  /* AS를 이용해 l은 countrylanguage */
+	WHERE l.IsOfficial='T'  /* True */
+	ORDER BY c.Population desc
+	LIMIT 10;
+
+/* GNP가 가장 큰 나라 10개 내림차순 (국가명, GNP) */
+SELECT Name, gnp FROM country
+	ORDER BY gnp desc
+	LIMIT 10;
+
+ 
