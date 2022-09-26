@@ -2,6 +2,8 @@
 tmp/ 
 tmp.html
 mysql.json
+package-lock.json
+package.json
 
 
 # Logs
