@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <%- incloud(`${path}/head`)%>
+</head>
+<body>
+    <%- include(`${path}/navBar`) %>
+
+    <div class="container mt-3">
+        <div class="row">       <!-- Grid 적용 -->
+            <div class="col-2"></div>
+            <div class="col-8">
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>선수명</th>
+                        <th>사진</th>
+                        <th>백넘버</th>
+                        <th>포지션</th>
+                        <th>수정/삭제</th>
+                    </tr>
+                    <% for(let row of rows) { %>
+                        <tr>
+                            <td><%= row.id %></td>
+                            <td><%= row.player %></td>
+                            <td><img src="/tigers/<%= row.player %>.jpg" height="48"></td>
+                            <td><%= row.backNo %></td>
+                            <td><%= row.position %></td>
+                            <td>
+                                <a href="/update/<%= row.id %>"><i class="fa-regular fa-pen-to-square"></i></a>&nbsp;
+                                <a href="/delete/<%= row.id %>"><i class="fa-solid fa-user-minus"></i></a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </table>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</body>
+</html>

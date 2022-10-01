@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+   <%- incloud(`${path}/head`)%>
+</head>
+<body>
+    <%- include(`${path}/navBar`) %>
+    
+    <div class="container mt-3">
+        <div class="row">       <!-- Grid 적용 -->
+            <div class="col-4"></div>
+            <div class="col-4">
+                <form action="/create" method="post">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td>선수명</td><td><input type="text" name="player"></td>
+                        </tr>
+                        <tr>
+                            <td>백넘버</td><td><input type="text" name="backNo"></td>
+                        </tr>
+                        <tr>
+                            <td>포지션</td><td><input type="text" name="position"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-primary">추가</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+</body>
+</html>
