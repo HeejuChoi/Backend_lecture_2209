@@ -250,3 +250,7 @@ SELECT g.name, g.debut, s.title  /* 위랑 동일함 */
 	WHERE g.debut BETWEEN DATE('2009-01-01') AND DATE('2009-12-31')
 	ORDER BY g.debut;
 	
+
+/* 테이블 명 변경 */
+RENAME TABLE tigers TO tigers_old;
+SHOW TABLES;
